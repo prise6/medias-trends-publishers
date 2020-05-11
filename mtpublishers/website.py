@@ -1,4 +1,4 @@
-from mtpublishers import Publisher
+from mtpublishers.core import Publisher
 
 
 class StaticWebsitePublisher(Publisher):
