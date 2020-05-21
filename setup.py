@@ -14,12 +14,12 @@ setup(
     include_package_data=True,
     platforms=['any'],
     install_requires=requirements,
-    url="https://github.com/prise6/medias-trends",
+    url="https://github.com/prise6/medias-trends-publishers",
     description='Publish trends of medias torrents',
     long_description=long_description,
     long_description_content_type="text/markdown",
     author='prise6',
     author_email="vieille.francois@gmail.com",
     license='GNU GPLv3',
-    python_requires='>=3.6'
+    python_requires='>=3.5'
 )
