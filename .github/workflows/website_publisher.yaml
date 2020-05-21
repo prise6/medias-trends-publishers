@@ -1,6 +1,6 @@
 name: website publisher
 
-on
+on:
   push:
     branches:
       - website
