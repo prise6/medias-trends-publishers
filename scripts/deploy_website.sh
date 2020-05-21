@@ -17,7 +17,8 @@ echo "ORIGIN_REPO:        $ORIGIN_REPO"
 echo "DATE_NOW:           $DATE_NOW"
 
 git checkout $WEBSITE_BRANCH
-git pull --rebase $ORIGIN_REPO master
+# uncomment if needed
+# git pull $ORIGIN_REPO master
 
 $PYTHON -m mtpublishers.cli publish -p website
 
