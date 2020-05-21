@@ -14,7 +14,7 @@ setup(
     include_package_data=True,
     platforms=['any'],
     install_requires=requirements,
-    url="https://github.com/prise6/medias-trends",
+    url="https://github.com/prise6/medias-trends-publishers",
     description='Publish trends of medias torrents',
     long_description=long_description,
     long_description_content_type="text/markdown",
