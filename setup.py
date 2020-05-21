@@ -21,5 +21,5 @@ setup(
     author='prise6',
     author_email="vieille.francois@gmail.com",
     license='GNU GPLv3',
-    python_requires='>=3.6'
+    python_requires='>=3.5'
 )
