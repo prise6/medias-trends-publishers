@@ -35,7 +35,7 @@ See [infos](https://github.com/prise6/medias-trends) for details.
 
 ## Static website
 
-First version using jina templating, pure js and css.
+First version using jina templating, pure js and css: [popular movies](https://prise6.github.io/medias-trends-publishers/)
 
 ```bash
 git clone https://github.com/prise6/medias-trends-publishers
