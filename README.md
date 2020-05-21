@@ -6,12 +6,42 @@ Project to publish trends computed by this project: [prise6/medias-trends](https
 
 Movie pipeline is top priority.
 
+## Requirements
+
+* Set `MEDIASTRENDS_MODE=dev|prod|...` environment variable
+* Create a _mediastrends_ config file like this:
+
+```ini
+[directory]
+base=/package
+data=/package/data
+logs=${base}/logs
+sqlite=/package/sqlite
+config=/package/config
+sql=/package/sqlite
+
+[db]
+database=sqlite
+
+[sqlite]
+path=${directory:sqlite}/database_prod.db
+backup_dir=${directory:data}
+
+[hash]
+file=${directory:config}/hash.txt
+```
+
+See [infos](https://github.com/prise6/medias-trends) for details.
+
 ## Static website
 
 First version using jina templating, pure js and css.
 
 ```bash
-python scripts/publish_website.py
+git clone https://github.com/prise6/medias-trends-publishers
+pip install .
+# use --force option if data hasn't changed
+python -m mtpublishers publish -p website
 ```
 
 Wish to improve with:
@@ -20,6 +50,7 @@ Wish to improve with:
 * add legal platform infos to watch a movie (gyde.tv, videospider, guidebox, ...)
 * unit testing + mock data to make contribution easier
 * ...
+
 
 ## Other publishers
 
