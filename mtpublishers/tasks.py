@@ -28,4 +28,7 @@ def publish(publishers: list, force: bool = False, test: bool = False, sql_data=
         data.register_observer(publisher)
         logger.debug("publisher %s attached" % publisher)
 
+    if test:
+        logger.debug("test publish mode done")
+
     data.notify()
