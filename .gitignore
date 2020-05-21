@@ -1,6 +1,7 @@
 ###### APP ######
 
 scripts/draft.py
+mediastrends.*.ini
 
 config/*
 !config/.gitkeep
