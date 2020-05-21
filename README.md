@@ -10,6 +10,10 @@ Movie pipeline is top priority.
 
 First version using jina templating, pure js and css.
 
+```bash
+python scripts/publish_website.py
+```
+
 Wish to improve with:
 
 * static site generator (nuxt ?)
