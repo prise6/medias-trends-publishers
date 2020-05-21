@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% macro layout_item(item) %}
+<div class="item">
+    <a href="http://www.imdb.com/title/tt{{ item.imdb_id }}/" target="_blank">
+        <img src="{{ item.cover_url }}" alt="{{ item.title }}" />
+    </a>
+    <h3>{{ item.title }}</h2>
+    <h4>{{ item.year }} - {{ item.rating }}/10<h4>
+    <!-- <h4>{{ item.genres }}<h4> -->
+    {% for genre_emoji in item.genres_emoji%}
+        <div class="tooltip">
+            <i class="em-svg {{ genre_emoji.emoji }} genre-emoji" aria-role="{{ genre_emoji.genre }}" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                {{ genre_emoji.genre }}
+            </span>
+        </div>
+    {% endfor %}
+    {% for flag in item.langs_flag %}
+        <i class="em {{ flag }} flag-emoji" aria-role="language" aria-label="Flag"></i>
+    {% endfor %}
+</div>
+{% endmacro %}
+
+{% block title %}movies - mediastrends{% endblock %}
+
+{% block header %}
+<h1 id="title"> Popular Movies </h1>
+<div id="separator"></div>
+<h4 id="sub-title">{{ subtitle }}</h4>
+{% endblock header %}
+
+{% block container %}
+    <nav class="nav-items">
+        <div class="nav-item-blank"></div>
+        <a href="javascript:void(0)" class="nav-item active" onclick="openItems(event, 'actual')">{{ nav_item_actual }}</a>
+        <a href="javascript:void(0)" class="nav-item" onclick="openItems(event, 'old')">{{ nav_item_old }}</a>
+        <div class="nav-item-blank"></div>
+    </nav>
+    {% if items|length == 0 %}
+    <p>Very empty here... come back later :)</p>
+    {% endif %}
+    <div class="items" id="actual">
+    {% for item in items if item.year >= 2019 %}
+        {{ layout_item(item) }}
+    {% endfor %}
+    </div>
+    <div class="items" id="old" style="display:none">
+    {% for item in items if item.year < 2019 %}
+        {{ layout_item(item) }}
+    {% endfor %}
+    </div>    
+{% endblock container %}
+
+{% block footer %}
+<p>
+    based on mediastrends data of {{ max_valid_date }}
+    <br>
+    {{ infos.nb_torrent_movies }} movie torrents and {{ infos.nb_imdbobject_movies }} movies
+    <br>
+    <a href="https://github.com/prise6" target="_blank">prise6</a>
+</p>
+{% endblock footer %}
+
+{% block js %}
+<script type="text/javascript">
+    function openItems(evt, item) {
+        var i;
+        var x = document.getElementsByClassName("items");
+        var nav_items = document.getElementsByClassName("nav-item");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        for (i = 0; i < x.length; i++) {
+            nav_items[i].className = nav_items[i].className.replace(" active", "");
+        }
+        document.getElementById(item).style.display = "flex";
+        evt.currentTarget.className += " active";
+    }
+</script>
+{% endblock js %}
