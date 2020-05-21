@@ -4,10 +4,10 @@
 <head>
     {% block head %}
     <meta charset="utf-8">
-    
-    <title>{% block title %}mediastrends{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="What people are watching lately">
     <meta name="author" content="prise6">
+    <title>{% block title %}mediastrends{% endblock %}</title>
     
     <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
 
@@ -218,12 +218,12 @@
 </head>
 
 <body>
+    <span id="forkongithub"><a href="https://github.com/prise6/medias-trends" target="_blank">Fork me on GitHub</a></span>
     <header>
         {% block header %}
         <h1 id="title">Mediastrends</h1>
         {% endblock header %}
     </header>
-    <span id="forkongithub"><a href="https://github.com/prise6/medias-trends" target="_blank">Fork me on GitHub</a></span>
     <div id="container">
         {% block container %}
         {% endblock container %}
