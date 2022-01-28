@@ -1,0 +1,1047 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="What people are watching lately">
+    <meta name="author" content="prise6">
+    <title>movies - mediastrends</title>
+    
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+
+    <style>
+
+    body {
+        background-color: #22223B;
+        color: #F2E9E4;
+        text-align: center;
+        font-family: sans-serif;
+    }
+
+    header #title {
+        text-align: center;
+        color: #F2E9E4;
+        font-size: 3em;
+        margin-top: 1em;
+        margin-bottom: 10px;
+        font-family: Arial, sans-serif;
+    }
+
+    header #separator {
+        margin-top: 0;
+        border-top: 1px solid #C9ADA7;
+        width: 50px;
+        margin: auto;
+    }
+    
+    header #sub-title {
+        text-align: center;
+        margin-top: 0;
+        padding-top: 1em;
+        color: #F2E9E4;
+        width: auto;
+    }
+    
+    header {
+        margin-bottom: 5em;
+    }
+
+    .nav-items {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-content: center;
+        margin-bottom: 3em;
+        font-family: Arial, sans-serif;
+    }
+    
+    .nav-item-blank {
+        flex-grow: 1;
+    }
+
+    .nav-item  {
+        color: #C9ADA7;
+        text-align: center;
+        text-decoration: none;
+        flex-grow: 2;
+        padding-bottom: 10px;
+        border-bottom: 5px solid rgba(242, 233, 228, .2);
+        font-size: .8em;
+        text-transform: uppercase;
+    }
+
+    .nav-item:hover {
+        border-bottom: 5px solid rgba(242, 233, 228, .5);
+    }
+    
+    .active, .active:hover {
+        color: #F2E9E4;
+        border-bottom: 5px solid rgba(242, 233, 228, .7);
+    }
+
+    .items {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        font-family: sans-serif;
+    }
+
+    .item {
+        flex-basis: 18em;
+        padding-left: 2em;
+        margin-bottom: 4em;
+        text-align: left;
+    }
+
+    .item h3 {
+        margin: 0;
+        color: #F2E9E4;
+    }
+
+    .item h4 {
+        margin: 0;
+        color: #9A8C98;
+        font-size: 0.8em;
+    }
+
+    .item img {
+        max-width:15em;
+        border: 1px solid rgba(201, 173, 167, .5);
+    }
+
+    .item .genre-emoji {
+        font-size: 1.2em;
+    }
+    
+    .item .flag-emoji {
+        font-size: 1.2em;
+    }
+    
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        position: absolute;
+        top: 135%;
+        left: 50%;
+        margin-left: -60px;
+        width: 120px;
+        background-color: rgba(242, 233, 228, .5);
+        color: #F2E9E4;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        z-index: 1;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+
+    footer {
+        color: #4A4E69;
+        text-align: center;
+    }
+
+    footer a {
+        text-decoration: none;
+        color:rgba(154, 140, 152, .5);
+    }
+    
+    #forkongithub a{
+        background:#F2E9E4;
+        color:#22223B;
+        text-decoration:none;
+        font-family:arial,sans-serif;
+        text-align:center;
+        font-weight:bold;
+        padding:5px 40px;
+        font-size:1rem;
+        line-height:2rem;
+        position:relative;
+        transition:0.5s;
+    }
+
+    #forkongithub a:hover{
+        background:#C9ADA7;
+        color:#22223B;
+    }
+
+    #forkongithub a::before,#forkongithub a::after{
+        content:"";
+        width:100%;
+        display:block;
+        position:absolute;
+        top:1px;
+        left:0;
+        height:1px;
+        background:#fff;
+    }
+    #forkongithub a::after{
+        bottom:1px;
+        top:auto;
+    }
+    
+    @media screen and (min-width:800px){
+        #forkongithub{
+            position:absolute;
+            display:block;
+            top:0;
+            right:0;
+            width:200px;
+            overflow:hidden;
+            height:200px;
+            z-index:9999;
+        }
+        #forkongithub a{
+            width:200px;
+            position:absolute;
+            top:60px;
+            right:-60px;
+            transform:rotate(45deg);
+            -webkit-transform:rotate(45deg);
+            -ms-transform:rotate(45deg);
+            -moz-transform:rotate(45deg);
+            -o-transform:rotate(45deg);
+            box-shadow:4px 4px 10px rgba(0,0,0,0.8);
+        }
+    }
+    </style>
+    
+</head>
+
+<body>
+    <span id="forkongithub"><a href="https://github.com/prise6/medias-trends" target="_blank">Fork me on GitHub</a></span>
+    <header>
+        
+<h1 id="title"> Popular Movies </h1>
+<div id="separator"></div>
+<h4 id="sub-title">one more website to find movies</h4>
+
+    </header>
+    <div id="container">
+        
+    <nav class="nav-items">
+        <div class="nav-item-blank"></div>
+        <a href="javascript:void(0)" class="nav-item active" onclick="openItems(event, 'actual')">recent</a>
+        <a href="javascript:void(0)" class="nav-item" onclick="openItems(event, 'old')">wanna see an old movie</a>
+        <div class="nav-item-blank"></div>
+    </nav>
+    
+    <div class="items" id="actual">
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt8356942/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BNzk4MDZhNTctMDA3OC00ODdkLWIyOWYtN2M0MzA3MDY5NDk1XkEyXkFqcGdeQXVyMTkxNjUyNQ@@.jpg" alt="The 355" />
+    </a>
+    <h3>The 355</h2>
+    <h4>2022 - 4.7/10<h4>
+    <!-- <h4>['Action', 'Thriller']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-male_superhero genre-emoji" aria-role="action" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                action
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-exploding_head genre-emoji" aria-role="thriller" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                thriller
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-flag-ro flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-flag-zh flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-es flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-fr flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-de flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-flag-ar flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt10965976/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BYTgxZmIyMWItMTlkMi00ZWM2LTg1YTgtMzExYzlmOGJkMWFjXkEyXkFqcGdeQXVyODIyOTEyMzY@.jpg" alt="Love Song for Tough Guys" />
+    </a>
+    <h3>Love Song for Tough Guys</h2>
+    <h4>2021 - 6.5/10<h4>
+    <!-- <h4>['Drama']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-anguished genre-emoji" aria-role="drama" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                drama
+            </span>
+        </div>
+    
+    
+        <i class="em em-fr flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt10327252/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BMGE5NjJjNGMtZDkwMy00MGFlLWFkYTktYWFkNTY1NjcwOTY2XkEyXkFqcGdeQXVyMDM2NDM2MQ@@.jpg" alt="The Forever Purge" />
+    </a>
+    <h3>The Forever Purge</h2>
+    <h4>2021 - 5.4/10<h4>
+    <!-- <h4>['Action', 'Horror', 'Thriller']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-fire genre-emoji" aria-role="action" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                action
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-fearful genre-emoji" aria-role="horror" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                horror
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-cold_face genre-emoji" aria-role="thriller" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                thriller
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-es flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt6654210/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BZTU5MmY0ZjctYTNlOS00MDIyLWJkZTAtNzBiOTkyNWI5MGY2XkEyXkFqcGdeQXVyNTc4MjczMTM@.jpg" alt="Infinite" />
+    </a>
+    <h3>Infinite</h2>
+    <h4>2021 - 5.5/10<h4>
+    <!-- <h4>['Action', 'Sci-Fi', 'Thriller']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-fire genre-emoji" aria-role="action" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                action
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-alien genre-emoji" aria-role="sci-fi" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                sci-fi
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-exploding_head genre-emoji" aria-role="thriller" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                thriller
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt11847410/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BMjM2MTg0MDUtZTMwOS00MTk3LTkzZWQtOTQ0ODY4MTI3MTMxXkEyXkFqcGdeQXVyMTM1MTE1NDMx.jpg" alt="The Fallout" />
+    </a>
+    <h3>The Fallout</h2>
+    <h4>2021 - 6.9/10<h4>
+    <!-- <h4>['Drama']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-cry genre-emoji" aria-role="drama" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                drama
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt6442686/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BZWMwN2ZlOWUtYjIzMS00MWVjLWJkM2ItZTdlNGIzYjZmMWYxXkEyXkFqcGdeQXVyMTM1MTE1NDMx.jpg" alt="WarHunt" />
+    </a>
+    <h3>WarHunt</h2>
+    <h4>2022 - 4.2/10<h4>
+    <!-- <h4>['Action', 'Horror', 'Thriller']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-female_superhero genre-emoji" aria-role="action" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                action
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-scream_cat genre-emoji" aria-role="horror" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                horror
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-cold_face genre-emoji" aria-role="thriller" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                thriller
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt7552936/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BYmNiOTc3NDctYTFlYS00MmIxLTlhODYtOGQ3ODQyODEyMjYxXkEyXkFqcGdeQXVyNjc1MDczMzg@.jpg" alt="Hotel Limbo" />
+    </a>
+    <h3>Hotel Limbo</h2>
+    <h4>2020 - 5.3/10<h4>
+    <!-- <h4>['Comedy', 'Romance']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-smile genre-emoji" aria-role="comedy" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                comedy
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-woman-heart-woman genre-emoji" aria-role="romance" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                romance
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt11599576/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BZTJjZWFmNDYtNWY2YS00ZTRiLWI3MjItNDY3YTgxYzQ1NzhiXkEyXkFqcGdeQXVyMjA1MDYwMjk@.jpg" alt="Juniper" />
+    </a>
+    <h3>Juniper</h2>
+    <h4>2021 - 6.9/10<h4>
+    <!-- <h4>['Drama']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-disappointed_relieved genre-emoji" aria-role="drama" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                drama
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt7475578/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BODIwMDE0MTktZTVjNS00OTVmLTg1MDEtOWNhMmUzYmNkM2UyXkEyXkFqcGdeQXVyNTg1MDQzMDU@.jpg" alt="Munich: The Edge of War" />
+    </a>
+    <h3>Munich: The Edge of War</h2>
+    <h4>2021 - 6.9/10<h4>
+    <!-- <h4>['Biography', 'Drama', 'History', 'Thriller']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-book genre-emoji" aria-role="biography" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                biography
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-disappointed_relieved genre-emoji" aria-role="drama" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                drama
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-moyai genre-emoji" aria-role="history" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                history
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-cold_face genre-emoji" aria-role="thriller" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                thriller
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-de flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt13234058/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BMzJhNWQxYTYtM2RlZC00MGE4LTkwN2EtNWE2ZGYyMGEyNTEyXkEyXkFqcGdeQXVyMjk3Mzk2MTA@.jpg" alt="My Son" />
+    </a>
+    <h3>My Son</h2>
+    <h4>2021 - 6.0/10<h4>
+    <!-- <h4>['Crime', 'Drama', 'Mystery', 'Thriller']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-female-detective genre-emoji" aria-role="crime" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                crime
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-confounded genre-emoji" aria-role="drama" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                drama
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-shushing_face genre-emoji" aria-role="mystery" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                mystery
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-cold_face genre-emoji" aria-role="thriller" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                thriller
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-flag-gd flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt14980972/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BYzNjMjc2YjEtODY3Zi00ZjliLTliMWQtOGNjYTRhZDQyYWU3XkEyXkFqcGdeQXVyNTA2Mjk2MTk@.jpg" alt="Hard Hit" />
+    </a>
+    <h3>Hard Hit</h2>
+    <h4>2021 - 6.1/10<h4>
+    <!-- <h4>['Drama', 'Thriller']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-cry genre-emoji" aria-role="drama" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                drama
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-cold_face genre-emoji" aria-role="thriller" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                thriller
+            </span>
+        </div>
+    
+    
+        <i class="em em-kr flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt14569490/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BOWQyOTgzZjctOTVjYy00NWE5LWI3MDgtYzg5MWMxMDdlNjhjXkEyXkFqcGdeQXVyNTcwMzkyNDE@.jpg" alt="Last Radio Call" />
+    </a>
+    <h3>Last Radio Call</h2>
+    <h4>2022 - 3.7/10<h4>
+    <!-- <h4>['Horror']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-scream genre-emoji" aria-role="horror" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                horror
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt11777738/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BMmRlNzkyYzUtYzE5Yi00YmZkLTgyYjQtMmFjMjhmNDU1OTJiXkEyXkFqcGdeQXVyMTM1MTE1NDMx.jpg" alt="A Hero" />
+    </a>
+    <h3>A Hero</h2>
+    <h4>2021 - 7.4/10<h4>
+    <!-- <h4>['Drama']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-anguished genre-emoji" aria-role="drama" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                drama
+            </span>
+        </div>
+    
+    
+        <i class="em em-flag-fa flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt15484842/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BYWMzZjcxZWMtNDM0OS00ZjMwLTg5MzItYzRhY2QwMGQ2YzNkXkEyXkFqcGdeQXVyNDY1MTQ0Mjg@.jpg" alt="Hawking: Can You Hear Me?" />
+    </a>
+    <h3>Hawking: Can You Hear Me?</h2>
+    <h4>2021 - 6.6/10<h4>
+    <!-- <h4>['Documentary']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-elephant genre-emoji" aria-role="documentary" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                documentary
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt12927342/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BMGY1YzkwMGMtYzM4Ni00ZDM4LTk3MjItNmM1Mzk2MWU4NDgzXkEyXkFqcGdeQXVyNjU1NDU4OTg@.jpg" alt="Heavy" />
+    </a>
+    <h3>Heavy</h2>
+    <h4>2021 - 4.2/10<h4>
+    <!-- <h4>['Drama']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-cry genre-emoji" aria-role="drama" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                drama
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt13658766/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BMmVhOGNhZjMtNmI0Ni00NWNhLWExYjItZThhMjBlMDBjMGU5XkEyXkFqcGdeQXVyMTA1NTIxMzA3.jpg" alt="Everybody Loves Chris Rock" />
+    </a>
+    <h3>Everybody Loves Chris Rock</h2>
+    <h4>2021 - 4.1/10<h4>
+    <!-- <h4>['Documentary', 'Biography']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-national_park genre-emoji" aria-role="documentary" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                documentary
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-book genre-emoji" aria-role="biography" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                biography
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt13989030/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BNWQwODgzNWUtZDllNi00OTYyLTliN2YtOTg3NGNhYzgyMDUwXkEyXkFqcGdeQXVyMTA5MDUwMzEz.jpg" alt="The Royal Treatment" />
+    </a>
+    <h3>The Royal Treatment</h2>
+    <h4>2022 - 5.2/10<h4>
+    <!-- <h4>['Comedy', 'Family', 'Romance']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-smile genre-emoji" aria-role="comedy" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                comedy
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-family genre-emoji" aria-role="family" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                family
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-woman-heart-man genre-emoji" aria-role="romance" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                romance
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+    </div>
+    <div class="items" id="old" style="display:none">
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt0079501/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BMTM4Mjg5ODEzMV5BMl5BanBnXkFtZTcwMDc3NDk0NA@@.jpg" alt="Mad Max" />
+    </a>
+    <h3>Mad Max</h2>
+    <h4>1979 - 6.9/10<h4>
+    <!-- <h4>['Action', 'Adventure', 'Sci-Fi', 'Thriller']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-boom genre-emoji" aria-role="action" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                action
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-mag genre-emoji" aria-role="adventure" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                adventure
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-alien genre-emoji" aria-role="sci-fi" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                sci-fi
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-exploding_head genre-emoji" aria-role="thriller" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                thriller
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt0448172/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BZTUwYTU0ODctMzFmYS00NjM0LTllYTQtM2FhNGU1NGIwNmI0XkEyXkFqcGdeQXVyNjU0NTI0Nw@@.jpg" alt="8MM 2" />
+    </a>
+    <h3>8MM 2</h2>
+    <h4>2005 - 4.5/10<h4>
+    <!-- <h4>['Mystery', 'Thriller']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-shushing_face genre-emoji" aria-role="mystery" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                mystery
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-cold_face genre-emoji" aria-role="thriller" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                thriller
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-flag-hu flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt0119908/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BM2FkYzU4NjQtY2ZkNy00ODczLWEzZDQtNGYxYzBiYWFlMDdlXkEyXkFqcGdeQXVyNjQ2MjQ5NzM@.jpg" alt="Poison Ivy: The New Seduction" />
+    </a>
+    <h3>Poison Ivy: The New Seduction</h2>
+    <h4>1997 - 4.8/10<h4>
+    <!-- <h4>['Drama', 'Thriller']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-anguished genre-emoji" aria-role="drama" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                drama
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-cold_face genre-emoji" aria-role="thriller" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                thriller
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt0083658/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@.jpg" alt="Blade Runner" />
+    </a>
+    <h3>Blade Runner</h2>
+    <h4>1982 - 8.1/10<h4>
+    <!-- <h4>['Action', 'Drama', 'Sci-Fi', 'Thriller']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-boom genre-emoji" aria-role="action" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                action
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-anguished genre-emoji" aria-role="drama" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                drama
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-alien genre-emoji" aria-role="sci-fi" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                sci-fi
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-cold_face genre-emoji" aria-role="thriller" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                thriller
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-de flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-cn flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-jp flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-flag-hu flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-flag-ar flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+        <i class="em em-kr flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt5613056/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BNDMyZDc3YzktNWI3Yy00ZDM1LWJjYTMtY2I2YzRmZGQ5MTU4XkEyXkFqcGdeQXVyMTY5Nzc4MDY@.jpg" alt="Piper" />
+    </a>
+    <h3>Piper</h2>
+    <h4>2016 - 8.4/10<h4>
+    <!-- <h4>['Animation', 'Short', 'Family']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-teddy_bear genre-emoji" aria-role="animation" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                animation
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-man-man-girl-boy genre-emoji" aria-role="family" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                family
+            </span>
+        </div>
+    
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt5442308/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BNDdkMTI0N2ItNDEwNS00YjE0LWE0NDYtMzliMTQ0NDMyMTE1XkEyXkFqcGdeQXVyNjQ2OTI5NDA@.jpg" alt="A Violent Prosecutor" />
+    </a>
+    <h3>A Violent Prosecutor</h2>
+    <h4>2016 - 6.7/10<h4>
+    <!-- <h4>['Action', 'Crime', 'Thriller']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-fire genre-emoji" aria-role="action" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                action
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-female-detective genre-emoji" aria-role="crime" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                crime
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-cold_face genre-emoji" aria-role="thriller" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                thriller
+            </span>
+        </div>
+    
+    
+        <i class="em em-kr flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+        
+<div class="item">
+    <a href="http://www.imdb.com/title/tt0094632/" target="_blank">
+        <img src="https://m.media-amazon.com/images/M/MV5BMzU0ODlhMjItZGM1Yy00OTMyLWE3MjMtZGJiNDgyZWFhMWU4XkEyXkFqcGdeQXVyMTQ2MjQyNDc@.jpg" alt="Transformations" />
+    </a>
+    <h3>Transformations</h2>
+    <h4>1988 - 4.0/10<h4>
+    <!-- <h4>['Horror', 'Sci-Fi']<h4> -->
+    
+        <div class="tooltip">
+            <i class="em-svg em-male_zombie genre-emoji" aria-role="horror" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                horror
+            </span>
+        </div>
+    
+        <div class="tooltip">
+            <i class="em-svg em-alien genre-emoji" aria-role="sci-fi" aria-label="Genre"></i>
+            <span class="tooltiptext">
+                sci-fi
+            </span>
+        </div>
+    
+    
+        <i class="em em-gb flag-emoji" aria-role="language" aria-label="Flag"></i>
+    
+</div>
+
+    
+    </div>    
+
+    </div>
+
+    <footer>
+        <p>
+            
+<p>
+    based on mediastrends data of 2022-01-28 02:07:01
+    <br>
+    130 movie torrents and 3996 movies
+    <br>
+    <a href="https://github.com/prise6" target="_blank">prise6</a>
+</p>
+
+        </p>
+    </footer>
+
+    
+<script type="text/javascript">
+    function openItems(evt, item) {
+        var i;
+        var x = document.getElementsByClassName("items");
+        var nav_items = document.getElementsByClassName("nav-item");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        for (i = 0; i < x.length; i++) {
+            nav_items[i].className = nav_items[i].className.replace(" active", "");
+        }
+        document.getElementById(item).style.display = "flex";
+        evt.currentTarget.className += " active";
+    }
+</script>
+
+</body>
+</html>
